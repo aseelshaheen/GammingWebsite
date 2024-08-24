@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+*{
+    font-family: 'Bangers';
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: 400;
+    font-family: "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+  }
+
+  body.stop {
+    overflow: hidden;
+  }
+  
+
+
+
+/* Main background styling */
+.main-background {
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230712/pngtree-modern-black-joysticks-set-on-abstract-light-wallpaper-perfect-for-gaming-image_3865865.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    margin: 0;
+    padding: 80px 20px 0; /* 80px space from the top */
+}
+
+/* Grid container styling */
+.images-products-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 20px; /* Space between grid items */
+    max-width: 1200px;
+    margin: 0 auto; /* Center align the container */
+    padding: 20px;
+}
+
+/* Individual game item styling */
+.product-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Background for better visibility */
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.product-container:hover {
+    transform: translateY(-5px); /* Lift on hover */
+}
+
+.slide {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+
+
+
+.custom-btn {
+    background-color: rgba(163, 159, 159, 0.6);
+    border: 2px solid rgba(94, 92, 92, 0.6);
+    border-radius: 40%;
+    color: #ffffff;
+    letter-spacing: 2px;
+    width: 260px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+
+  
+  /* section {
+    display: flex;
+    min-height: 100vh;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    position: relative;
+  } */
+
+  /* .images-products-container {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); ]
+    gap: 20px;
+    padding: 20px;
+    
+} */
+
+  
+  section h1 {
+    font-size: 120px;
+    margin: 0;
+    z-index: 2;
+    position: relative;
+  }
+  
+  section {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start to push items to the top */
+    flex-direction: column;
+    color: #fff;
+    position: relative;
+    padding: 20px; /* Added some padding for spacing */
+  }
+  
