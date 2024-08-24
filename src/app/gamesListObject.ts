@@ -58,7 +58,7 @@ export class gamesListObject {
                 id: 5,
                 name: 'Minecraft',
                 imageUrl:
-                    'https://assets-prd.ignimgs.com/2022/09/09/minecraft-1662757547503.jpg',
+                    'https://th.bing.com/th/id/R.2b70cc6e0224f7cc936a82f465a20d47?rik=l1Pgm2O1coKcuw&pid=ImgRaw&r=0',
                 price: 26.95,
                 size: '1 GB',
                 description:
@@ -87,8 +87,8 @@ export class gamesListObject {
                 id: 8,
                 name: 'Fortnite',
                 imageUrl:
-                    'https://cdn2.unrealengine.com/Fortnite%2Fhome%2Fchapter-4-season-2%2FHome-Nav_3-Desktop_273x153.jpg',
-                price: 0.0, // Free-to-play game
+                    'https://cdn1.dotesports.com/wp-content/uploads/2021/03/25122024/Fortnite-feature.jpg',
+                price: 5.0, // Free-to-play game
                 size: '30 GB',
                 description:
                     'A battle royale game where players fight to be the last one standing.',
@@ -136,7 +136,7 @@ export class gamesListObject {
                 id: 13,
                 name: 'The Legend of Zelda: Breath of the Wild',
                 imageUrl:
-                    'https://assets-prd.ignimgs.com/2022/09/09/the-legend-of-zelda-breath-of-the-wild-1662757418844.jpg',
+                    'https://assets.nintendo.com/image/upload/ar_16:9,w_1200/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero',
                 price: 59.99,
                 size: '14 GB',
                 description:
@@ -146,7 +146,7 @@ export class gamesListObject {
                 id: 14,
                 name: 'Animal Crossing: New Horizons',
                 imageUrl:
-                    'https://assets-prd.ignimgs.com/2022/09/09/animal-crossing-new-horizons-1662757582357.jpg',
+                    'https://images.nintendolife.com/310ca1afe0dbe/animal-crossing-new-horizons.original.jpg',
                 price: 59.99,
                 size: '7 GB',
                 description:
@@ -166,7 +166,7 @@ export class gamesListObject {
                 id: 16,
                 name: 'The Sims 4',
                 imageUrl:
-                    'https://assets-prd.ignimgs.com/2022/09/09/the-sims-4-1662757548702.jpg',
+                    'https://th.bing.com/th/id/OIP.jpP1lJsL8opiQLgSotadZwHaEK?rs=1&pid=ImgDetMain',
                 price: 19.99,
                 size: '20 GB',
                 description:
@@ -176,7 +176,7 @@ export class gamesListObject {
                 id: 17,
                 name: 'Overwatch',
                 imageUrl:
-                    'https://assets-prd.ignimgs.com/2022/09/09/overwatch-1662757581192.jpg',
+                    'https://th.bing.com/th/id/R.71766fb1eae0d2c302a93d8ec12ba1d1?rik=%2fL6UCSE%2fCcgoXA&pid=ImgRaw&r=0',
                 price: 39.99,
                 size: '30 GB',
                 description: 'A team-based multiplayer first-person shooter game.',

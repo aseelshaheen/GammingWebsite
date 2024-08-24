@@ -1,15 +1,28 @@
-<section class="main-background">
-    <h1 style="margin-bottom: 20px;">Browse Games</h1> <!-- Heading with margin to separate from items -->
-    <div class="images-products-container">
-      <div class="game-item images-products-container">
-         @for( game of games; track game.id){
-        <img [src]="game.imageUrl" alt="{{ game.name }}" style="width: 100%; height: auto;"> 
+<body class="main-background">
+  <section>
+    <div class="serach-result">
+    <div class="heading">
+      <h1>Browse Games</h1>
+      <search-box></search-box>
+    </div>
+    <p><strong>Search Results for: </strong></p>
+  </div>
+
+
+    <div class="games-container container">
+      @for( game of games; track game.id){
+      <div class="game-item">
+        <img
+          [src]="game.imageUrl"
+          alt="{{ game.name }}"
+          style="width: 100%; height: auto"
+        />
         <h2>{{ game.name }}</h2>
         <p>Price: ${{ game.price }}</p>
         <p>Size: {{ game.size }}</p>
         <p>{{ game.description }}</p>
-      }
       </div>
-       </div>
+      }
+    </div>
   </section>
-  
+</body>

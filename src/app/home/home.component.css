@@ -4,10 +4,8 @@
     font-family: 'Bangers';
 }
 body {
-  
-    line-height: 1.6;
+
     color: #fff;
-    font-weight: 400;
     font-family: "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
   }
 
@@ -26,7 +24,7 @@ body {
 .custom-btn {
     background-color: rgba(163, 159, 159, 0.6);
     border: 2px solid rgba(94, 92, 92, 0.6);
-    border-radius: 40%;
+    border-radius: 200px;
     color: #ffffff;
     letter-spacing: 2px;
     width: 260px;
