@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Game, gamesListObject } from '../gamesListObject';  
 
@@ -17,11 +17,14 @@ export class SearchBoxComponent {
   @ViewChild('searchWrapper') searchWrapper!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
 
+  @Output() filteredGames = new EventEmitter<Game[]>();  // New output event
+
   constructor() {
     const gameList = gamesListObject.getInstance().games;
-    this.allGamesCount = this.showAllGames(gameList);
-    this.freeGamesCount = this.showFreeGames(gameList);
-    this.paidGamesCount = this.showPaidGames(gameList);
+    this.allGamesCount = gameList.length;
+    this.freeGamesCount = this.getFreeGamesCount(gameList);
+    this.paidGamesCount = this.getPaidGamesCount(gameList);
+    this.filteredGames.emit(gameList); // Emit the initial game list
   }
 
   searchToggle(event: Event): void {
@@ -44,26 +47,26 @@ export class SearchBoxComponent {
     event.preventDefault();
   }
 
-  showAllGames(games: Game[]): number {
-    return games.length; 
+  getFreeGamesCount(games: Game[]): number {
+    return games.filter(game => game.price === 0).length; 
   }
 
-  showFreeGames(games: Game[]): number {
-    return games.filter((game) => game.price === 0).length; 
-  }
-
-  showPaidGames(games: Game[]): number {
-    return games.filter((game) => game.price > 0).length; 
+  getPaidGamesCount(games: Game[]): number {
+    return games.filter(game => game.price > 0).length; 
   }
 
   filterGames(filter: string): void {
     const gameList = gamesListObject.getInstance().games;
+    let filteredList: Game[] = [];
+
     if (filter === 'all') {
-      this.allGamesCount = this.showAllGames(gameList);
+      filteredList = gameList;
     } else if (filter === 'free') {
-      this.freeGamesCount = this.showFreeGames(gameList);
+      filteredList = gameList.filter(game => game.price === 0);
     } else if (filter === 'paid') {
-      this.paidGamesCount = this.showPaidGames(gameList);
+      filteredList = gameList.filter(game => game.price > 0);
     }
+
+    this.filteredGames.emit(filteredList);  // Emit the filtered game list
   }
 }

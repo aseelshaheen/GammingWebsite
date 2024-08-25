@@ -11,10 +11,14 @@ import { SearchBoxComponent } from "../search-box/search-box.component";
   styleUrls: ['./browse.component.css']
 })
 export class BrowseComponent {
-  games: Game[]; 
+  games: Game[] = []; 
 
   constructor() {
     const gamesList = gamesListObject.getInstance(); 
     this.games = gamesList.games; 
+  }
+
+  updateGamesList(filteredGames: Game[]): void {
+    this.games = filteredGames;  
   }
 }
