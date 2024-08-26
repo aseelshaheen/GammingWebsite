@@ -1,6 +1,12 @@
-import { Component, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Game, gamesListObject } from '../gamesListObject';  
+import { Game, gamesListObject } from '../gamesListObject';
 
 @Component({
   selector: 'search-box',
@@ -14,17 +20,26 @@ export class SearchBoxComponent {
   allGamesCount: number = 0;
   freeGamesCount: number = 0;
   paidGamesCount: number = 0;
+
+  gameList = gamesListObject.getInstance().games;
+  filteredList: Game[] = [];
+  currentFilter: string = 'all'; // Track the current filter state
+
+  @Output()
+  searchTextChanged: EventEmitter<String> = new EventEmitter<String>();
+
+  // Search input
   @ViewChild('searchWrapper') searchWrapper!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
 
-  @Output() filteredGames = new EventEmitter<Game[]>();  // New output event
+  @Output() filteredGames = new EventEmitter<Game[]>();
 
   constructor() {
-    const gameList = gamesListObject.getInstance().games;
-    this.allGamesCount = gameList.length;
-    this.freeGamesCount = this.getFreeGamesCount(gameList);
-    this.paidGamesCount = this.getPaidGamesCount(gameList);
-    this.filteredGames.emit(gameList); // Emit the initial game list
+    this.allGamesCount = this.gameList.length;
+    this.freeGamesCount = this.getFreeGamesCount(this.gameList);
+    this.paidGamesCount = this.getPaidGamesCount(this.gameList);
+    this.filteredList = this.gameList; 
+    this.filteredGames.emit(this.filteredList);
   }
 
   searchToggle(event: Event): void {
@@ -33,7 +48,7 @@ export class SearchBoxComponent {
 
     if (!isActive) {
       container.classList.add('active');
-      this.searchInput.nativeElement.focus(); 
+      this.searchInput.nativeElement.focus();
     }
 
     event.preventDefault();
@@ -43,30 +58,50 @@ export class SearchBoxComponent {
     const container = this.searchWrapper.nativeElement;
     container.classList.remove('active');
     this.searchInput.nativeElement.value = '';
-    this.searchText = ''; // Reset the search text
+    this.searchText = ''; 
+    this.filteredList = this.applyFilter(); 
+    this.filteredGames.emit(this.filteredList);
     event.preventDefault();
   }
 
   getFreeGamesCount(games: Game[]): number {
-    return games.filter(game => game.price === 0).length; 
+    return games.filter((game) => game.price === 0).length;
   }
 
   getPaidGamesCount(games: Game[]): number {
-    return games.filter(game => game.price > 0).length; 
+    return games.filter((game) => game.price > 0).length;
   }
 
   filterGames(filter: string): void {
-    const gameList = gamesListObject.getInstance().games;
-    let filteredList: Game[] = [];
+    this.currentFilter = filter;
+    this.filteredList = this.applyFilter();
+    this.filteredGames.emit(this.filteredList);
+  }
 
-    if (filter === 'all') {
-      filteredList = gameList;
-    } else if (filter === 'free') {
-      filteredList = gameList.filter(game => game.price === 0);
-    } else if (filter === 'paid') {
-      filteredList = gameList.filter(game => game.price > 0);
+  applyFilter(): Game[] {
+    let filtered = [...this.gameList];
+    if (this.currentFilter === 'free') {
+      filtered = filtered.filter((game) => game.price === 0);
+    } else if (this.currentFilter === 'paid') {
+      filtered = filtered.filter((game) => game.price > 0);
     }
 
-    this.filteredGames.emit(filteredList);  // Emit the filtered game list
+    if (this.searchText) {
+      filtered = filtered.filter((game) =>
+        game.name.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    }
+    return filtered;
+  }
+
+  searchGames(text?: string) {
+
+    if (text !== undefined) {
+      this.searchText = text;
+    }
+
+
+    this.filteredList = this.applyFilter();
+    this.filteredGames.emit(this.filteredList);
   }
 }

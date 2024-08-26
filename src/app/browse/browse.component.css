@@ -35,6 +35,7 @@ body {
 .game-item {
     display: flex;
     flex-direction: column;
+    height: 450px;
     background-color: rgba(0, 0, 0, 0.5); 
     padding: 10px;
     text-align: center;

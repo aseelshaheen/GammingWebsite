@@ -2,7 +2,7 @@
   <div class="search-result">
     <div class="search-wrapper" #searchWrapper>
       <div class="input-holder">
-        <input type="text" class="search-input" #searchInput placeholder="Type to search" [(ngModel)]="searchText" />
+        <input type="text" class="search-input" #searchInput placeholder="Type to search" [(ngModel)]="searchText" (input)="searchGames()"/>
         <button class="search-icon" (click)="searchToggle($event)">
           <span style="color: aliceblue;">.</span>
         </button>

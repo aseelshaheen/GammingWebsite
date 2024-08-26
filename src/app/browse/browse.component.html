@@ -1,13 +1,14 @@
 <body class="main-background">
   <section>
-    <search-box (filteredGames)="updateGamesList($event)"></search-box>
+    <search-box (filteredGames)="updateGamesList($event)" ></search-box>
     <div class="games-container container">
       @for(game of games; track game.id ) {
       <div class="game-item">
 
      
-        <img [src]="game.imageUrl" alt="{{ game.name }}" style="width: 100%; height: auto" />
+        <img [src]="game.imageUrl" alt="{{ game.name }}" style="width: 100%; height: 200px" />
         <h2>{{ game.name }}</h2>
+        <p>Genre: {{game.genre}}</p>
         <p>Price: ${{ game.price }}</p>
         <p>Size: {{ game.size }}</p>
         <p>{{ game.description }}</p>
