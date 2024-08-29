@@ -23,12 +23,20 @@ export class SearchBoxComponent {
 
   gameList = gamesListObject.getInstance().games;
   filteredList: Game[] = [];
-  currentFilter: string = 'all'; // Track the current filter state
+  currentFilter: string = 'all'; 
+
+  selectedGenre: string = 'all';
+  genres: string[] = [
+    'RPG', 'Action-Adventure', 'Sandbox', 'FPS (First-Person Shooter)', 
+    'Battle Royale', 'Sports', 'MOBA (Multiplayer Online Battle Arena)', 
+    'Action RPG', 'Party', 'Adventure', 'Simulation', 'Horror', 
+    'Roguelike', 'Survival', 'Action'
+  ];
 
   @Output()
   searchTextChanged: EventEmitter<String> = new EventEmitter<String>();
 
-  // Search input
+
   @ViewChild('searchWrapper') searchWrapper!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
 
@@ -72,34 +80,45 @@ export class SearchBoxComponent {
     return games.filter((game) => game.price > 0).length;
   }
 
-  filterGames(filter: string): void {
-    this.currentFilter = filter;
-    this.filteredList = this.applyFilter();
+  filterGames(filter?: string): void {
+    this.currentFilter = filter || this.currentFilter; 
+    this.filteredList = this.applyFilter(); 
     this.filteredGames.emit(this.filteredList);
-  }
+}
+  
 
   applyFilter(): Game[] {
     let filtered = [...this.gameList];
+
+    // filter by price 
     if (this.currentFilter === 'free') {
-      filtered = filtered.filter((game) => game.price === 0);
+        filtered = filtered.filter((game) => game.price === 0);
     } else if (this.currentFilter === 'paid') {
-      filtered = filtered.filter((game) => game.price > 0);
+        filtered = filtered.filter((game) => game.price > 0);
     }
 
-    if (this.searchText) {
-      filtered = filtered.filter((game) =>
-        game.name.toLowerCase().includes(this.searchText.toLowerCase())
-      );
+    // Filter by genre
+    if (this.selectedGenre !== 'all') {
+        filtered = filtered.filter((game) => game.genre.includes(this.selectedGenre));
     }
+
+    // Filter by search text
+    if (this.searchText) {
+        filtered = filtered.filter((game) =>
+            game.name.toLowerCase().includes(this.searchText.toLowerCase())
+        );
+    }
+
     return filtered;
-  }
+}
+
+
 
   searchGames(text?: string) {
 
     if (text !== undefined) {
       this.searchText = text;
     }
-
 
     this.filteredList = this.applyFilter();
     this.filteredGames.emit(this.filteredList);

@@ -14,7 +14,7 @@ body {
 
 
 .main-background {
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: rgba(0, 0, 0, 0.6);
     background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230712/pngtree-modern-black-joysticks-set-on-abstract-light-wallpaper-perfect-for-gaming-image_3865865.jpg");
     background-blend-mode: multiply;

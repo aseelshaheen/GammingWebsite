@@ -175,29 +175,48 @@ body {
 } */
 
 .filter-buttons {
-    border: 1px solid #564f4f ;
+    border: 1px solid #564f4f;
     justify-content: center;
     display: flex;
     align-items: center;
-    width: 400px;
+    width: 600px;
     height: 60px;
     margin-top: 20px;
-    display: flex;
     border-radius: 200px;
     background-image: linear-gradient(40deg, #111, #942678);
     transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
-    
+    gap: 10px; 
 }
 
-.filter-buttons label {
+.filter-buttons label,
+.filter-buttons select {
     color: #FFF;
     font-size: 18px;
     cursor: pointer;
-
+    margin-left: 20px;
 }
 
 .filter-buttons input[type="radio"] {
     margin-right: 5px;
-    margin-left: 20px;
 }
+
+.filter-buttons select {
+    width: 150px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-image: linear-gradient(40deg, #5e5c5c, #bd85af);
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    border: none;
+}
+
+.filter-buttons select option{
+    background-color: rgba(12, 12, 12, 0.8);
+}
+
+.filter-buttons select option:hover{
+    background-color: #942678;
+}
+
 

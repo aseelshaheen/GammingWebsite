@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchBoxComponent } from "./search-box/search-box.component";
+import { GameDetailsComponent } from "./game-details/game-details.component";
+import { gamesListObject } from './gamesListObject';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,9 @@ import { SearchBoxComponent } from "./search-box/search-box.component";
   imports: [RouterOutlet,
     RouterModule,
     HomeComponent,
-    HeaderComponent, SearchBoxComponent],
+    HeaderComponent, 
+    SearchBoxComponent, 
+    GameDetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

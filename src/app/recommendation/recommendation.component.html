@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body>
+    <div class="container">
+        <div class="slide" #slide>
+            @for (game of recommendedGames; track game.id) {
+            <div class="content" (mouseenter)="startAutoNext()" (mouseleave)="stopAutoNext()">
+                <div class="item">
+                    <img [src]="game.imageUrl" alt="{{ game.name }}" class="game-image" />
+                    <div class="game-info">
+                        <div class="name">{{ game.name }}</div>
+                        <div class="des">{{ game.description }}</div>
+                        <button class="custom-btn">See More</button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="button">
+            <button #prev class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+            <button #next class="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+</body>

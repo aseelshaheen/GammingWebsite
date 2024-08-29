@@ -2,7 +2,8 @@
   <div class="search-result">
     <div class="search-wrapper" #searchWrapper>
       <div class="input-holder">
-        <input type="text" class="search-input" #searchInput placeholder="Type to search" [(ngModel)]="searchText" (input)="searchGames()"/>
+        <input type="text" class="search-input" #searchInput placeholder="Type to search" [(ngModel)]="searchText"
+          (input)="searchGames()" />
         <button class="search-icon" (click)="searchToggle($event)">
           <span style="color: aliceblue;">.</span>
         </button>
@@ -11,18 +12,25 @@
       <p><strong>Search Results for:</strong> {{ searchText }}</p>
       <div class="filter-buttons">
         <label>
-          <input type="radio" name="filter" value="all" (change)="filterGames('all')" checked> 
+          <input type="radio" name="filter" value="all" (change)="filterGames('all')" checked>
           All ({{ allGamesCount }})
         </label>
         <label>
-          <input type="radio" name="filter" value="free" (change)="filterGames('free')"> 
+          <input type="radio" name="filter" value="free" (change)="filterGames('free')">
           Free ({{ freeGamesCount }})
         </label>
         <label>
-          <input type="radio" name="filter" value="paid" (change)="filterGames('paid')"> 
+          <input type="radio" name="filter" value="paid" (change)="filterGames('paid')">
           Paid ({{ paidGamesCount }})
         </label>
+        <select [(ngModel)]="selectedGenre" (change)="filterGames(currentFilter)">
+          <option value="all">All Genres</option>
+          @for(genre of genres; track genre){
+          <option [value]="genre">{{ genre }}</option>
+          }
+        </select>
       </div>
+
     </div>
 
 
