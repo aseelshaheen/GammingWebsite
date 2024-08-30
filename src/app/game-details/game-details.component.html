@@ -1,20 +1,23 @@
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-<p>k</p>
-  <dialog class="game-container" id="gameDetailsDialog">
-    <button class="close-btn" (click)="closeDialog()"><i class="fas fa-times"></i></button>
-    @for (game of games; track game.id) {
-      <div class="game-item">
-        <img [src]="game.imageUrl" alt="{{ game.name }}" />
-        <h2>{{ game.name }}</h2>
+<body>
+<div class="game-container">
+  <button class="close-btn" (click)="close.emit()">
+    <i class="fas fa-times"></i>
+  </button>
+  @if (game) {
+  <div class="game-item">
+    <div class="display-game">
+      <img class="game-img" [src]="game.imageUrl" alt="{{ game.name }}" />
+      <div class="game-details">
+       
         <p>Genre: {{ game.genre }}</p>
         <p>Price: ${{ game.price }}</p>
         <p>Size: {{ game.size }}</p>
         <p>{{ game.description }}</p>
+        <button class="custom-btn">Add To Cart</button>
       </div>
-    }
-  </dialog>
-
-
+    </div>
+    <h2 class="title-text">{{ game.name }}</h2>
+  </div>
+  }
+</div>
+</body>

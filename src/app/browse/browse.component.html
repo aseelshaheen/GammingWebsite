@@ -2,28 +2,17 @@
   <section>
     <search-box (filteredGames)="updateGamesList($event)"></search-box>
     <div class="games-container container">
-      @for (game of games; track game.id) {
-        <div class="game-item" (click)="showGameDetails(game)">
-          <img [src]="game.imageUrl" alt="{{ game.name }}" style="width: 100%; height: 200px" />
-          <h2>{{ game.name }}</h2>
-          <p>Genre: {{ game.genre }}</p>
-          <p>Price: ${{ game.price }}</p>
-          <p>Size: {{ game.size }}</p>
-          <p>{{ game.description }}</p>
-        </div>
-      }
+      @for(game of games; track game.id){
+      <div class="game-item" (click)="viewProductDetails(game.id)"> 
+        <p>{{game.id}}</p>
+        <img [src]="game.imageUrl" alt="{{ game.name }}" style="width: 100%; height: 200px" />
+        <h2>{{ game.name }}</h2>
+        <p>Genre: {{ game.genre }}</p>
+        <p>Price: ${{ game.price }}</p>
+        <p>Size: {{ game.size }}</p>
+        <p>{{ game.description }}</p>
+      </div>
+    }
     </div>
   </section>
-
-  
-  @if (isDialogOpen) {
-    <game-details 
-      [game]="selectedGame" 
-      [isDialogOpen]="isDialogOpen" 
-      (closeDialog)="isDialogOpen = false">
-    </game-details>
-  }
-  
-  <!-- <game-details>@if(isDialogOpen){ [game]="selectedGame"}</game-details> -->
-
 </body>

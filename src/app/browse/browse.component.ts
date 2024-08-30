@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { gamesListObject, Game } from '../gamesListObject';
 import { SearchBoxComponent } from "../search-box/search-box.component";
 import { GameDetailsComponent } from "../game-details/game-details.component";
@@ -12,24 +13,32 @@ import { GameDetailsComponent } from "../game-details/game-details.component";
 })
 export class BrowseComponent {
   games: Game[] = [];
-  selectedGame: Game | null = null; 
-  isDialogOpen: boolean = false;    
+  selectedGame: Game | null = null;
+  isDialogOpen: boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     const gamesList = gamesListObject.getInstance();
     this.games = gamesList.games;
+    console.log(this.isDialogOpen)
   }
 
   updateGamesList(filteredGames: Game[]): void {
     this.games = filteredGames;
   }
 
-  showGameDetails(game: Game): void {
-    this.selectedGame = game;   
-    this.isDialogOpen = true;   
 
-    console.log(this.selectedGame);
-    console.log(this.isDialogOpen);
+  openGameDetails(game: Game): void {
+    this.selectedGame = game;
+    this.isDialogOpen = true;
 
+    console.log(this.selectedGame+" "+this.isDialogOpen)
+  }
+
+  closeDialog(): void {
+    this.isDialogOpen = false;
+  }
+
+  viewProductDetails(id: number): void {
+    this.router.navigate(['/game-details', id]);
   }
 }

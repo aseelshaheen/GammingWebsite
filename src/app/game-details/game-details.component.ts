@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { Game } from '../gamesListObject';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Game, gamesListObject } from '../gamesListObject';
 
 @Component({
   selector: 'game-details',
@@ -7,13 +8,17 @@ import { Game } from '../gamesListObject';
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.css']
 })
-export class GameDetailsComponent {
-  @Input() game: Game | null = null; 
-  @Input() isDialogOpen: boolean = false; 
-games: any;
+export class GameDetailsComponent implements OnInit {
+  @Input() game: Game | null = null;
+  @Output() close = new EventEmitter<void>();
+  games: Game[] = gamesListObject.getInstance().games;
 
-  closeDialog(): void {
-    this.isDialogOpen = false; 
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      const gameId = +params['id'];
+      this.game = this.games.find(game => game.id === gameId) || null;
+    });
   }
-
 }

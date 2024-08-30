@@ -13,7 +13,7 @@ const routeConfig: Routes = [
   { path: 'browse', component: BrowseComponent },
   { path: 'login', component: LoginComponent } ,
   { path: 'recommendation', component: RecommendationComponent },
-  { path: 'game-details', component: GameDetailsComponent}
+  { path: 'game-details/:id', component: GameDetailsComponent}
 ];
 
 NgModule({
